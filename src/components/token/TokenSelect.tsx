@@ -4,15 +4,15 @@ import clsx from 'clsx';
 import { Select, SelectOption } from '@/components/common/Select';
 import { IToken } from '@/types';
 
-export interface TokenSelectProps {
+export interface ITokenSelectProps {
   tokens: IToken[];
   value?: IToken | null;
   onChange?: (value: IToken | null) => void;
 }
 
-export interface TokenSelectRef {}
+export interface ITokenSelectRef {}
 
-export const TokenSelect = forwardRef<TokenSelectRef, TokenSelectProps>(
+export const TokenSelect = forwardRef<ITokenSelectRef, ITokenSelectProps>(
   ({ tokens, value, onChange }, ref) => {
     const renderSelectedOption = (option: IToken) => (
       <span className="flex items-center gap-2">

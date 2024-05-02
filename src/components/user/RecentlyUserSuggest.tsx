@@ -4,12 +4,12 @@ import { IUser } from '@/types';
 
 import { UserChip } from './UserChip';
 
-export interface RecentlyUserSuggestProps {
+export interface IRecentlyUserSuggestProps {
   users: IUser[];
   onChange?: (user: IUser) => void;
 }
 
-export const RecentlyUserSuggest = forwardRef<any, RecentlyUserSuggestProps>(
+export const RecentlyUserSuggest = forwardRef<any, IRecentlyUserSuggestProps>(
   ({ users, onChange }, ref) => {
     useImperativeHandle(ref, () => ({}));
 

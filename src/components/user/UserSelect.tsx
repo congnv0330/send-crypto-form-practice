@@ -4,15 +4,15 @@ import clsx from 'clsx';
 import { Select, SelectOption } from '@/components/common/Select';
 import { IUser } from '@/types';
 
-export interface UserSelectProps {
+export interface IUserSelectProps {
   users: IUser[];
   value?: IUser | null;
   onChange?: (value: IUser | null) => void;
 }
 
-export interface UserSelectRef {}
+export interface IUserSelectRef {}
 
-export const UserSelect = forwardRef<UserSelectRef, UserSelectProps>(
+export const UserSelect = forwardRef<IUserSelectRef, IUserSelectProps>(
   ({ users, value, onChange }, ref) => {
     const renderSelectedOption = (option: IUser) => option.name;
 

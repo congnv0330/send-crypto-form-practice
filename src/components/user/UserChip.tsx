@@ -1,11 +1,11 @@
 import { IUser } from '@/types';
 
-export interface UserChipProps {
+export interface IUserChipProps {
   user: IUser;
   onClick?: (user: IUser) => void;
 }
 
-export function UserChip({ user, onClick }: UserChipProps) {
+export function UserChip({ user, onClick }: IUserChipProps) {
   const handleClick = () => {
     onClick && onClick(user);
   };

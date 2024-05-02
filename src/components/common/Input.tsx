@@ -1,11 +1,11 @@
 import { type ComponentProps, forwardRef } from 'react';
 import clsx from 'clsx';
 
-export interface InputProps extends ComponentProps<'input'> {
+export interface IInputProps extends ComponentProps<'input'> {
   suffix?: string;
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
+export const Input = forwardRef<HTMLInputElement, IInputProps>(
   ({ className, suffix, ...props }, ref) => {
     return (
       <div className="flex items-center overflow-hidden rounded-2xl bg-div-bound px-4">
@@ -17,7 +17,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           )}
           {...props}
         />
-        {suffix && <p className="text-xxs text-right">{suffix}</p>}
+        {suffix && <p className="text-right text-xxs">{suffix}</p>}
       </div>
     );
   },

@@ -30,32 +30,32 @@ type BaseSelectProps<TValue> = PropsWithChildren<{
   placeholder?: string;
 }>;
 
-type SingleSelectProps<TValue> = BaseSelectProps<TValue> & {
+type ISingleSelectProps<TValue> = BaseSelectProps<TValue> & {
   multiple?: false;
   value?: TValue | null;
   renderSelectedOption: (option: TValue) => ReactNode;
   onChange?: (value: TValue | null) => void;
 };
 
-type MultipleSelectProps<TValue> = BaseSelectProps<TValue> & {
+type IMultipleSelectProps<TValue> = BaseSelectProps<TValue> & {
   multiple: true;
   value?: TValue[];
   renderSelectedOption: (option: TValue[]) => ReactNode;
   onChange?: (value: TValue[]) => void;
 };
 
-export type SelectProps<TValue> =
-  | SingleSelectProps<TValue>
-  | MultipleSelectProps<TValue>;
+export type ISelectProps<TValue> =
+  | ISingleSelectProps<TValue>
+  | IMultipleSelectProps<TValue>;
 
-interface SelectContextValue<TValue> {
+interface ISelectContextValue<TValue> {
   getIsSelected: (option: TValue) => boolean;
   getItemProps: ReturnType<typeof useInteractions>['getItemProps'];
   handleSelect: (option: TValue) => void;
 }
 
-const SelectContext = createContext<SelectContextValue<any>>(
-  {} as SelectContextValue<any>,
+const SelectContext = createContext<ISelectContextValue<any>>(
+  {} as ISelectContextValue<any>,
 );
 
 export function Select<TValue>({
@@ -69,7 +69,7 @@ export function Select<TValue>({
   value,
   renderSelectedOption,
   onChange,
-}: SelectProps<TValue>) {
+}: ISelectProps<TValue>) {
   const [isOpen, setIsOpen] = useState(false);
 
   const { refs, floatingStyles, context } = useFloating({

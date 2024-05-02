@@ -7,7 +7,7 @@ export const ErrorMessage = forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={clsx('text-red-400 text-xs font-light leading-3', className)}
+    className={clsx('text-xs font-light leading-3 text-red-400', className)}
     {...props}
   />
 ));

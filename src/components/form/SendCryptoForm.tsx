@@ -77,7 +77,7 @@ function SendCryptoFormTokenBalance({
   return (
     <p className="mt-2 text-right text-xxs text-sub">
       Balance:{' '}
-      <span className="text-blue font-semibold">
+      <span className="font-semibold text-blue">
         {token.user_balance} {token.code}
       </span>
     </p>
@@ -102,7 +102,7 @@ function SendCryptoFormSubmitButton({
 //#endregion
 
 //#region Summary
-interface SendCryptoFormSummaryProps {
+interface ISendCryptoFormSummaryProps {
   control: Control<ISendCryptoFormValue>;
   className: string;
 }
@@ -110,7 +110,7 @@ interface SendCryptoFormSummaryProps {
 function SendCryptoFormSummary({
   control,
   className,
-}: SendCryptoFormSummaryProps) {
+}: ISendCryptoFormSummaryProps) {
   const recipient = useWatch({ control, name: 'recipient' });
   const token = useWatch({ control, name: 'token' });
   const amount = useWatch({ control, name: 'amount' });
@@ -196,7 +196,7 @@ function SendCryptoFormSummary({
 }
 //#endregion
 
-export interface SendCryptoFormProps {
+export interface ISendCryptoFormProps {
   users: IUser[];
   recentlyUsers: IUser[];
   tokens: IToken[];
@@ -210,7 +210,7 @@ export function SendCryptoForm({
   tokens,
   defaultValues,
   onSubmit,
-}: SendCryptoFormProps) {
+}: ISendCryptoFormProps) {
   const { control, setError, clearErrors, handleSubmit } =
     useForm<ISendCryptoFormValue>({
       defaultValues,
@@ -282,7 +282,7 @@ export function SendCryptoForm({
               />
               <button
                 type="button"
-                className="w-12.5 h-12.5 flex items-center justify-center rounded-2xl bg-div-bound text-purple-400"
+                className="flex h-12.5 w-12.5 items-center justify-center rounded-2xl bg-div-bound text-purple-400"
               >
                 <IconQR />
               </button>
