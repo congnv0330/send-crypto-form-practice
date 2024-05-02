@@ -5,6 +5,7 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     colors: {
+      transparent: 'transparent',
       white: '#fff',
       purple: {
         400: '#462E67',
@@ -33,6 +34,9 @@ export default {
       },
       minHeight: {
         12.5: '3.25rem',
+      },
+      fontSize: {
+        xxs: ['0.625rem', '0.75rem'],
       },
     },
   },
