@@ -81,7 +81,11 @@ export const UserSelect = forwardRef<UserSelectRef, UserSelectProps>(
             }
           >
             <div className="pr-4">
-              <img src={user.avatar_url} className="h-8 w-8" alt={user.name} />
+              <img
+                src={user.avatar_url}
+                className="h-8 w-8 rounded-full"
+                alt={user.name}
+              />
             </div>
             <div className="text-left">
               <p className="text-sm font-light leading-4.5">{user.name}</p>
