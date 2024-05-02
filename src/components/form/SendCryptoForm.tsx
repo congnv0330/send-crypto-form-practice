@@ -6,6 +6,8 @@ import {
   useFormState,
   useWatch,
 } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 
 import { Button } from '@/components/common/Button';
 import { ErrorMessage } from '@/components/common/ErrorMessage';
@@ -20,6 +22,7 @@ import { UserSelect } from '@/components/user/UserSelect';
 import { copyToClipboard } from '@/helpers/copy';
 import { ISendCryptoFormValue, IToken, IUser } from '@/types';
 
+//#region Amount & Balance
 function SendCryptoFormAmountInput({
   control,
 }: {
@@ -80,7 +83,9 @@ function SendCryptoFormTokenBalance({
     </p>
   );
 }
+//#endregion
 
+//#region SubmitButton
 function SendCryptoFormSubmitButton({
   control,
 }: {
@@ -94,7 +99,9 @@ function SendCryptoFormSubmitButton({
     </Button>
   );
 }
+//#endregion
 
+//#region Summary
 interface SendCryptoFormSummaryProps {
   control: Control<ISendCryptoFormValue>;
   className: string;
@@ -187,6 +194,7 @@ function SendCryptoFormSummary({
     </div>
   );
 }
+//#endregion
 
 export interface SendCryptoFormProps {
   users: IUser[];
@@ -203,12 +211,31 @@ export function SendCryptoForm({
   defaultValues,
   onSubmit,
 }: SendCryptoFormProps) {
-  const { control, handleSubmit } = useForm<ISendCryptoFormValue>({
-    defaultValues,
-  });
+  const { control, setError, clearErrors, handleSubmit } =
+    useForm<ISendCryptoFormValue>({
+      defaultValues,
+      resolver: zodResolver(
+        z.object({
+          recipient: z.object({}).passthrough(),
+          token: z.object({}).passthrough(),
+          amount: z
+            .string()
+            .refine((value) => Number(value), 'Amount must be a number.')
+            .refine((value) => Number(value) > 0, 'Amount must be at least 0.'),
+        }),
+      ),
+    });
 
   const _onSubmit = (values: ISendCryptoFormValue) => {
-    onSubmit && onSubmit(values);
+    if (Number(values.amount) > values.token!.user_balance) {
+      setError('amount', {
+        type: 'custom',
+        message: 'Insufficient balance.',
+      });
+    } else {
+      clearErrors('amount');
+      onSubmit && onSubmit(values);
+    }
   };
 
   return (

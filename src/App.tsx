@@ -21,6 +21,11 @@ export default function App() {
     [],
   );
 
+  const onSubmit = (value: ISendCryptoFormValue) => {
+    console.log(value);
+    alert('Success!');
+  };
+
   return (
     <div className="flex min-h-screen w-full justify-center bg-gray-200 md:items-center">
       <SendCryptoForm
@@ -28,6 +33,7 @@ export default function App() {
         recentlyUsers={recentlyUsers}
         tokens={tokens}
         defaultValues={defaultValues}
+        onSubmit={onSubmit}
       />
     </div>
   );
