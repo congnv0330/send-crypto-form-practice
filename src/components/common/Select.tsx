@@ -20,7 +20,7 @@ import {
 } from '@floating-ui/react';
 import clsx from 'clsx';
 
-import { IconDown } from '../icons/IconDown';
+import { IconDown } from '@/components/icons/IconDown';
 
 type BaseSelectProps<TValue> = PropsWithChildren<{
   by: keyof TValue & string;
@@ -141,7 +141,7 @@ export function Select<TValue>({
         ref={refs.setReference}
         type="button"
         className={clsx(
-          'flex w-full items-center justify-between rounded-2xl px-4 py-3.5',
+          'flex w-full items-center justify-between gap-4 rounded-2xl px-4 py-3.5',
           className,
         )}
         {...getReferenceProps()}

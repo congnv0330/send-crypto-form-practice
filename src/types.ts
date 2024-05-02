@@ -14,3 +14,9 @@ export interface IToken {
   network_fee: number; // USD
   user_balance: number;
 }
+
+export interface ISendCryptoFormValue {
+  recipient: IUser | null;
+  token: IToken | null;
+  amount: string;
+}
